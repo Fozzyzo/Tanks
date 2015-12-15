@@ -14,6 +14,8 @@ public:
 private:
 
 	sf::Time general_timer;
+	sf::Time log_timer;
+	int time;
 	static unsigned int client_id;
 	char network_data[MAX_PACKET_SIZE];
 	ServerNetwork* network;

@@ -6,7 +6,9 @@ unsigned int GameServer::client_id;
 GameServer::GameServer(void)
 {
 	client_id = 0;
-
+	time = 0;
+	log_timer = sf::Time();
+	general_timer = sf::Time();
 	network = new ServerNetwork();
 }
 
@@ -31,14 +33,15 @@ void GameServer::Send_Action_Packets()
 void GameServer::Receive_From_Clients()
 {
 	sf::Clock clock;
-	sf::Time log_timer;
 	Packet packet;
 	
 	std::map<unsigned int, SOCKET>::iterator it;
 
 	general_timer = clock.getElapsedTime();
-	log_timer += clock.getElapsedTime();
+	log_timer += general_timer;
 	clock.restart();
+	
+	time++;
 
 	for (it = network->sessions.begin(); it != network->sessions.end(); it++)
 	{
@@ -66,10 +69,11 @@ void GameServer::Receive_From_Clients()
 
 				case ACTION_EVENT:
 
-					if (log_timer.asSeconds() > 4)
+					if (time >= 80000)
 					{
 						printf("server received action packet from client\n");
-						printf("Bullet position: x = %f.2, y = %f.2", packet.x, packet.y);
+						printf("Bullet position: x = %f, y = %f\n", packet.x, packet.y);
+						time = 0;
 					}
 
 					Send_Action_Packets();

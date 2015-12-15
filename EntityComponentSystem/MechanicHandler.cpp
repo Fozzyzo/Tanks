@@ -109,12 +109,6 @@ void MechanicHandler::Update(Player& player1, Player& player2, sf::RenderWindow&
 	bullet.Update(delta_time);
 	bullet.Draw(window);
 
-	if (cooldown > 1)
-	{
-		std::cout << "Bullets pos x = " << bullet.Get_Position().x << ", y = " << bullet.Get_Position().y << std::endl;
-		cooldown = 0;
-	}
-
 	client->Update(bullet.Get_Position());
 }
 
