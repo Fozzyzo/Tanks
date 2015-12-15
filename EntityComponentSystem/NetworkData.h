@@ -13,6 +13,8 @@ enum Packet_Types
 struct Packet
 {
 	unsigned int packet_type;
+	float x;
+	float y;
 
 	void Serialize(char* data)
 	{

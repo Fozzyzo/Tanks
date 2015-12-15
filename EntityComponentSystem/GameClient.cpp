@@ -12,7 +12,7 @@ GameClient::GameClient(void)
 	Packet packet;
 	packet.packet_type = INIT_CONNECTION;
 
-	packet.Deserialize(packet_data);
+	packet.Serialize(packet_data);
 
 	NetworkServices::sendMessage(network->connect_socket, packet_data, packet_size);
 }
@@ -30,14 +30,17 @@ void GameClient::Send_Action_Packets()
 
 	Packet packet;
 	packet.packet_type = ACTION_EVENT;
-
+	packet.x = bullet_position.x;
+	packet.y = bullet_position.y;
+	
 	packet.Serialize(packet_data);
 
 	NetworkServices::sendMessage(network->connect_socket, packet_data, packet_size);
 }
 
-void GameClient::Update()
+void GameClient::Update(sf::Vector2f position)
 {
+	bullet_position = position;
 	Packet packet;
 	int data_length = network->Receive_Packets(network_data);
 
@@ -53,11 +56,12 @@ void GameClient::Update()
 		packet.Deserialize(&(network_data[i]));
 		i += sizeof(Packet);
 
-		switch (packet.packet_type) {
+		switch (packet.packet_type) 
+		{
 
 		case ACTION_EVENT:
 
-			printf("client received action event packet from server\n");
+			//printf("client received action event packet from server\n");
 
 			Send_Action_Packets();
 
@@ -70,4 +74,5 @@ void GameClient::Update()
 			break;
 		}
 	}
+
 }

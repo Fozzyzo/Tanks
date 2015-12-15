@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Bullet.h"
+#include "GameClient.h"
 
 #define PI 3.14159265359
 
@@ -24,6 +25,7 @@ public:
 	
 private:
 
+	GameClient* client;
 	Bullet bullet;
 	GameState game_state;
 	float cooldown;

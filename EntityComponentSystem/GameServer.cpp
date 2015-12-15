@@ -1,4 +1,5 @@
 #include "GameServer.h"
+#include "SFML\System\Vector2.hpp"
 
 unsigned int GameServer::client_id;
 
@@ -29,9 +30,15 @@ void GameServer::Send_Action_Packets()
 
 void GameServer::Receive_From_Clients()
 {
+	sf::Clock clock;
+	sf::Time log_timer;
 	Packet packet;
-
+	
 	std::map<unsigned int, SOCKET>::iterator it;
+
+	general_timer = clock.getElapsedTime();
+	log_timer += clock.getElapsedTime();
+	clock.restart();
 
 	for (it = network->sessions.begin(); it != network->sessions.end(); it++)
 	{
@@ -59,7 +66,12 @@ void GameServer::Receive_From_Clients()
 
 				case ACTION_EVENT:
 
-					printf("server received action packet from client\n");
+					if (log_timer.asSeconds() > 4)
+					{
+						printf("server received action packet from client\n");
+						printf("Bullet position: x = %f.2, y = %f.2", packet.x, packet.y);
+					}
+
 					Send_Action_Packets();
 					break;
 

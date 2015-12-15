@@ -1,5 +1,7 @@
 #pragma once
 #include "ServerNetwork.h"
+#include "SFML\System\Clock.hpp"
+#include "SFML\System\Time.hpp"
 class GameServer
 {
 public:
@@ -11,6 +13,7 @@ public:
 
 private:
 
+	sf::Time general_timer;
 	static unsigned int client_id;
 	char network_data[MAX_PACKET_SIZE];
 	ServerNetwork* network;

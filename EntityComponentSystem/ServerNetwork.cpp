@@ -121,7 +121,7 @@ int ServerNetwork::Receive_Data(unsigned int client_id, char* receive_buffer)
 		
 		if (error == 0)
 		{
-			printf("connection closed\n");
+			printf("Connection closed\n");
 		}
 
 		return error;
@@ -141,7 +141,7 @@ void ServerNetwork::Send_All_Clients(char* packets, int total_size)
 		current_socket = it->second;
 		send_error = NetworkServices::sendMessage(current_socket, packets, total_size);
 		
-		if (send_error = SOCKET_ERROR)
+		if (send_error == SOCKET_ERROR)
 		{
 			printf("send failed with error: %d", WSAGetLastError());
 			closesocket(current_socket);

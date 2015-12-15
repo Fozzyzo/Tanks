@@ -9,6 +9,7 @@ MechanicHandler::MechanicHandler()
 	cooldown = 0;
 	bullet = Bullet();
 	game_state = GameState::PAUSED;
+	client = new GameClient();
 }
 
 
@@ -113,6 +114,8 @@ void MechanicHandler::Update(Player& player1, Player& player2, sf::RenderWindow&
 		std::cout << "Bullets pos x = " << bullet.Get_Position().x << ", y = " << bullet.Get_Position().y << std::endl;
 		cooldown = 0;
 	}
+
+	client->Update(bullet.Get_Position());
 }
 
 sf::Vector2f MechanicHandler::Normalize_Vector(sf::Vector2f vector)
