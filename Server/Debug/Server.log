@@ -1,0 +1,19 @@
+﻿Build started 13.12.2015 9:30:05.
+     1>Project "C:\Users\Toni\Documents\GitHub\Tanks\Server\Server.vcxproj" on node 3 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Toni\Documents\GitHub\Tanks\Debug\Server.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Toni\Documents\GitHub\Tanks\Debug\Server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Toni\Documents\GitHub\Tanks\Debug\Server.lib" /MACHINE:X86 Debug\Server.obj
+         Debug\stdafx.obj
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__bind@12 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__closesocket@4 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__htonl@4 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__htons@4 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__inet_ntoa@4 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__ntohs@4 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__recvfrom@24 referenced in function _main
+     1>Server.obj : error LNK2019: unresolved external symbol __imp__socket@12 referenced in function _main
+     1>C:\Users\Toni\Documents\GitHub\Tanks\Debug\Server.exe : fatal error LNK1120: 8 unresolved externals
+     1>Done Building Project "C:\Users\Toni\Documents\GitHub\Tanks\Server\Server.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.23

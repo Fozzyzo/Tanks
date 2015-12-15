@@ -1,32 +1,53 @@
+#include <iostream>
 #include "SFML\Graphics.hpp"
+#include "Game.h"
+
+
+void Server_Update(void*);
+
+GameServer* server;
 
 int main()
 {
-		sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
-		sf::Texture texture;
-		if (!texture.loadFromFile("TankBottom.png"));
+	int input;
+	std::cout << "Select network setting:\n1) Host server\n2) Join server" << std::endl;
+	std::cin >> input;
+
+	switch (input)
+	{
+
+	case 1:
+		std::cout << "Starting server..." << std::endl;
 		
-		sf::RectangleShape line(sf::Vector2f(10, 2));
-		line.setPosition(100, 400);
+		server = new GameServer();
+		_beginthread(Server_Update, 0, (void*)12);
+		break;
 
-		sf::Sprite player1(texture);
-		player1.setPosition(100, 400);
-		sf::Sprite player2(texture);
-		player2.setPosition(700, 400);
+	case 2:
 
-		while (window.isOpen())
-		{
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
+		std::cout << "Joining server..." << std::endl;
+		
+		break;
 
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}
-			window.clear(sf::Color(255,255,255));
-			window.draw(line);
-			window.draw(player1);
-			window.draw(player2);
-			window.display();
-		}
+	default:
+
+		std::cout << "Unknown input!" << std::endl;
+		break;
+	}
+
+	Game game;
+	game.StartUp();	
+	game.Update();
+
+	return 0;
 }
+
+void Server_Update(void* arg)
+{
+	while (true)
+	{
+		server->Update();
+	}
+}
+
+
